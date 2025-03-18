@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="h-full">
@@ -68,32 +68,16 @@
 
             <!-- Mobile menu, show/hide based on menu state. -->
             <div class="md:hidden" id="mobile-menu">
-                <div class="flex space-y-1 px-2 pb-3 pt-2 sm:px-3 justify-between">
+                <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <div class="flex items-center">
-                        <x-nav-link href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" :active="request()->is('/')">Home</x-nav-link>
-                        <x-nav-link href="/jobs"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" :active="request()->is('jobs')">Jobs</x-nav-link>
-                        <x-nav-link href="/contact"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" :active="request()->is('contact')">Contact</x-nav-link></div>
-                    <div>
-                        @guest
-                        <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
-                        <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
-                        @endguest
-
-                        @auth
-                                <form method="POST" action="/logout">
-                                    @csrf
-
-                                    <x-form-button>Log Out</x-form-button>
-                                </form>
-                        @endauth
-                    </div>
+                    <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                       aria-current="page">Home</a>
+                    <a href="/about"
+                       class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About</a>
+                    <a href="/contact"
+                       class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contact</a>
                 </div>
-
-                
-                {{-- <div class="border-t border-gray-700 pb-3 pt-4">
+                <div class="border-t border-gray-700 pb-3 pt-4">
                     <div class="flex items-center px-5">
                         <div class="flex-shrink-0">
                             <img class="h-10 w-10 rounded-full" src="https://laracasts.com/images/lary-ai-face.svg"
@@ -114,7 +98,7 @@
                             </svg>
                         </button>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </nav>
 
